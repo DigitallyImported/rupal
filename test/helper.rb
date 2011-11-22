@@ -1,4 +1,4 @@
-require 'ipay'
+require 'rupal'
 require 'test/unit'
 require 'date'
 

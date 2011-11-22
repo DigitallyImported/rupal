@@ -4,3 +4,4 @@
 *.xml
 config
 log
+Gemfile.lock
