@@ -1,0 +1,6 @@
+*.tmproj
+.DS_Store
+*.gem
+*.xml
+config
+log
