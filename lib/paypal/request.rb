@@ -27,6 +27,8 @@ module PayPal
     protected
     
     def build_request(data)
+      raise RequestError.new 'No PayPal API configuration found' unless PayPal.config.api
+      
       data.merge(
         :version => PayPal.config.api.version,
         :user => PayPal.config.api.user,

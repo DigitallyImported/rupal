@@ -7,6 +7,10 @@ I don't have time for coming up with clever names. Ruby + PayPal == rupal, deal 
 
 Changelog
 ---------
+**v0.1.0**
+
+- Added ReferenceTransaction API helper class
+- Added BillingAgreement API helper class
 
 **v0.0.1**
 
@@ -16,7 +20,6 @@ Dependencies
 ----
 
 - active_support for it's to\_query/to\_param methods
-- active_model for basic models/validations
 - retryable for, you guessed it, retrying failed connections/timeouts
 
 Setup

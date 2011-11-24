@@ -41,7 +41,12 @@ module PayPal
     def errors
       @errors ||= []
     end
-  
+    
+    def has_error_code?(code)
+      @errors.each { |e| return true if e.code.to_s == code.to_s }
+      false
+    end
+    
     protected
     
     def parse_response(response_data)
