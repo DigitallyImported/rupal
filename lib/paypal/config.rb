@@ -32,13 +32,16 @@ module PayPal
       File.expand_path(File.join(ROOT, 'config', CONFIG_NAME))
     end
   
-    def load_config_file
-      config = if File.readable?(config_file)
-        RecursiveOpenStruct.new(YAML.load_file(config_file)[ENV])
-      else
-        RecursiveOpenStruct.new
+    def load_config_file(file = nil)
+      raise "Cannot load configuration file '#{file}'" if file and !File.readable?(file)
+      
+      file ||= config_file
+      begin
+        config = RecursiveOpenStruct.new(YAML.load_file(file)[ENV])
+      rescue Errno::ENOENT
+        config = RecursiveOpenStruct.new
       end
-    
+      
       set_defaults(config)
     end
     
@@ -48,9 +51,9 @@ module PayPal
       config.log_file ||= default_log_file
       config
     end
-
-    def config
-      @config ||= load_config_file
+    
+    def config(file = nil)
+      @config ||= load_config_file(file)
       yield @config if block_given?
       @config
     end
