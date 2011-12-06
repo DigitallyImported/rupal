@@ -47,7 +47,7 @@ Usage
 ----
 	require 'rupal'
 	
-	response = PayPal::Request.new(:method => :DoCapture, ...).send
+	response = PayPal::Request.new(:method => :DoCapture, ...).send_request
 	if response.success?
 	  puts "Request completed at #{response.timestamp}, CORRELATIONID=#{response.correlation_id}"
 	  # do stuff with response.data hash

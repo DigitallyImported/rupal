@@ -13,18 +13,18 @@ module PayPal
           :cancelurl => cancel_url,
           :billingtype => 'MerchantInitiatedBilling',
           :billingagreementdescription => description
-        }.merge(opt)).send
+        }.merge(opt)).send_request
       end
       
       def create(token)
         Request.new(
           :method => 'CreateBillingAgreement',
           :token => token
-        ).send
+        ).send_request
       end
       
       def details(token)
-        Request.new(:method => 'GetBillingAgreementCustomerDetails', :token => token).send
+        Request.new(:method => 'GetBillingAgreementCustomerDetails', :token => token).send_request
       end
       
       def update(reference_id, description = nil, opt = {})
@@ -33,7 +33,8 @@ module PayPal
           :referenceid => reference_id,
         }.merge(opt)
         params[:description] = description unless description.nil?
-        Request.new(params).send
+        
+        Request.new(params).send_request
       end
       
       def cancel(reference_id)

@@ -15,7 +15,7 @@ module PayPal
       PayPal.log.debug @data
     end
     
-    def send
+    def send_request
       PayPal.log.info('Dry run enabled, not actually sending.') and return if @dry_run
       raise RequestError.new 'No PayPal API url configured' unless PayPal.config.api.url
       
