@@ -43,7 +43,7 @@ module PayPal
     end
     
     def has_error_code?(code)
-      @errors.each { |e| return true if e.code.to_s == code.to_s }
+      errors.each { |e| return true if e.code.to_s == code.to_s }
       false
     end
     
@@ -78,7 +78,7 @@ module PayPal
         PayPal.log.error @errors
       end
       
-      if errors.has_error_code? '10001' or errors.has_error_code? '10001'
+      if has_error_code? '10001' or has_error_code? '10001'
         raise RetryRequest.new('This API is temporarily unavailable. Please try later.') 
       end
       
