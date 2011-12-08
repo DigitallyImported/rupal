@@ -9,6 +9,6 @@ module PayPal
 end
 
 $:.unshift(File.dirname(__FILE__))
-%w[ errors version constants config log request response ].each do |file|
+%w[ errors version config log request response ].each do |file|
   require "paypal/#{file}"
 end

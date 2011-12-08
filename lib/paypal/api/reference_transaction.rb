@@ -27,7 +27,7 @@ module PayPal
           :method => 'DoReferenceTransaction',
           :referenceid => reference_id,
           :paymentaction => payment_action
-        }.merge(opt)).send
+        }.merge(opt)).send_request
       end
       
     end
