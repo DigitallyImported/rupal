@@ -4,6 +4,7 @@ module PayPal
   CONFIG_NAME = 'paypal.yml'
   LOG_PREFIX  = 'paypal'
   
+  autoload :Transaction,          'paypal/api/transaction'
   autoload :BillingAgreement,     'paypal/api/billing_agreement'
   autoload :ReferenceTransaction, 'paypal/api/reference_transaction'
 end

@@ -16,6 +16,4 @@ Gem::Specification.new do |s|
   s.files         = Dir.glob("{lib,test}/**/*") + %w(README.md Rakefile)
   
   s.add_dependency 'retryable'
-  s.add_dependency 'activemodel'
-  s.add_dependency 'activesupport'
 end

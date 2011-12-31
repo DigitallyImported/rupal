@@ -5,3 +5,4 @@
 config
 log
 Gemfile.lock
+*.sublime*
