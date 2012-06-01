@@ -54,14 +54,22 @@ module PayPal
       store.set_default_paths
       http.cert_store = store
       
+      # set some timeouts
+      http.open_timeout  = 60 # this blocks forever by default, lets be a bit less crazy.
+      http.read_timeout  = PayPal.config.timeout
+      http.ssl_timeout   = PayPal.config.timeout
+
       req = Net::HTTP::Post.new(url.path, 'User-Agent' => "AudioAddict/PayPal v#{PayPal::VERSION}")
       res = http.start { |http| http.request(req, data.to_query) }
 
       res.body
       
-      rescue EOFError, Errno::ECONNREFUSED, Errno::ECONNRESET => e
-        PayPal.log.error e
-        raise ServiceUnavailableError.new("Unable to send your request or the request was rejected by the server: #{e}")
+    rescue Timeout::Error
+      PayPal.log.warn 'Request timed out'
+      raise RetryRequest.new 'Request timed out'
+    rescue EOFError, Errno::ECONNREFUSED, Errno::ECONNRESET => e
+      PayPal.log.error e
+      raise ServiceUnavailableError.new("Unable to send your request or the request was rejected by the server: #{e}")
     end
   end
 end

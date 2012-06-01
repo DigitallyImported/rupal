@@ -48,6 +48,7 @@ module PayPal
     def set_defaults(config)
       config.dry_run ||= false
       config.retries ||= 3
+      config.timeout ||= 60
       config.log_file ||= default_log_file
       config
     end
