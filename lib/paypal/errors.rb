@@ -20,7 +20,9 @@ module PayPal
     end
     
     def to_s
-      "#{severity}(#{code}): #{short_message} -- #{long_message}"
+      e = "#{severity}(#{code}): #{short_message}"
+      e += "-- #{long_message}" if short_message != long_message
+      e
     end
     
     def to_hash
