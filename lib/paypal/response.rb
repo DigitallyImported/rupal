@@ -79,7 +79,7 @@ module PayPal
       end
       
       if has_error_code? '10001' or has_error_code? '10001'
-        raise RetryRequest.new('This API is temporarily unavailable. Please try later.') 
+        raise ApiError.new('This API is temporarily unavailable. Please try later.') 
       end
       
       PayPal.log.debug 'Data:'
