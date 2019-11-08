@@ -3,12 +3,12 @@ module PayPal
     class << self
       
       def redirect_url(token)
-        "https://www.#{ENV == 'production' ? '' : 'sandbox.'}paypal.com/cgi-bin/webscr?cmd=_customer-billing-agreement&token=#{token}"
+        "https://www.#{ENV == 'production' ? '' : 'sandbox.'}paypal.com/cgi-bin/webscr?cmd=_express-checkout&token=#{token}"
       end
       
       def setup(description, return_url, cancel_url, opt = {})
-        Request.new({
-          :method => 'SetCustomerBillingAgreement',
+        resp = Request.new({
+          :method => 'SetExpressCheckout',
           :returnurl => return_url,
           :cancelurl => cancel_url,
           :billingtype => 'MerchantInitiatedBilling',
